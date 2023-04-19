@@ -12,10 +12,10 @@ function loginAction()
         $error = array();
         #Check username
         if (empty($_POST['username'])) {
-            $error['username'] = "Không được để trống tên đăng nhập";
+            $error['username'] = "(*) Không được để trống tên đăng nhập";
         } else {
             if (!is_username($_POST['username'])) {
-                $error['username'] = "Tên đăng nhập không hợp lệ";
+                $error['username'] = "(*) Tên đăng nhập không hợp lệ";
             } else {
                 $username = $_POST['username'];
             }
@@ -23,10 +23,10 @@ function loginAction()
 
         #Check password
         if (empty($_POST['password'])) {
-            $error['password'] = "Không được để trống mật khẩu";
+            $error['password'] = "(*) Không được để trống mật khẩu";
         } else {
             if (!is_password($_POST['password'])) {
-                $error['password'] = "Mật khẩu không hợp lệ";
+                $error['password'] = "(*) Mật khẩu không hợp lệ";
             } else {
                 $password = $_POST['password'];
             }

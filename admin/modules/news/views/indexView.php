@@ -11,12 +11,6 @@ get_sidebar();
     <div class="card">
       <div class="card-header font-weight-bold d-flex justify-content-between align-items-center">
         <h5 class="m-0 ">Danh sách bài viết</h5>
-        <div class="form-search form-inline">
-          <form action="#">
-            <input type="" class="form-control form-search" placeholder="Tìm kiếm">
-            <input type="submit" name="btn-search" value="Tìm kiếm" class="btn btn-primary">
-          </form>
-        </div>
       </div>
       <div class="card-body">
         <div class="analytic">
@@ -32,115 +26,43 @@ get_sidebar();
           </select>
           <input type="submit" name="btn-search" value="Áp dụng" class="btn btn-primary">
         </div>
-        <table class="table table-striped table-checkall">
+        <table class="table table-striped table-checkall text-center">
           <thead>
             <tr>
-              <th scope="col">
-                <input name="checkall" type="checkbox">
-              </th>
-              <th scope="col">#</th>
+              <th scope="col">STT</th>
               <th scope="col">Ảnh</th>
               <th scope="col">Tiêu đề</th>
-              <th scope="col">Danh mục</th>
+              <th scope="col">Trạng thái</th>
               <th scope="col">Ngày tạo</th>
               <th scope="col">Tác vụ</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <td scope="row">1</td>
-              <td><img src="http://via.placeholder.com/80X80" alt=""></td>
-              <td><a href="">Giá xăng sẽ tiếp tục tăng ở mức cao, lần thứ 4 liên tiếp vào ngày mai?</a></td>
-              <td>Tin nóng</td>
-              <td>26:06:2020 14:00</td>
-              <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <td scope="row">2</td>
-              <td><img src="http://via.placeholder.com/80X80" alt=""></td>
-              <td><a href="#">Xuất hiện ứng dụng ngân hàng Việt Nam leo lên vị trí Top 1 trên App Store</a></td>
-              <td>Tin nóng</td>
-              <td>26:06:2020 14:00</td>
-              <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <td scope="row">3</td>
-              <td><img src="http://via.placeholder.com/80X80" alt=""></td>
-              <td><a href="">Giá xăng sẽ tiếp tục tăng ở mức cao, lần thứ 4 liên tiếp vào ngày mai?</a></td>
-              <td>Tin nóng</td>
-              <td>26:06:2020 14:00</td>
-              <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <td>4</td>
-              <td><img src="http://via.placeholder.com/80X80" alt=""></td>
-              <td><a href="">Xuất hiện ứng dụng ngân hàng Việt Nam leo lên vị trí Top 1 trên App Store</a></td>
-              <td>Tin nóng</td>
-              <td>26:06:2020 14:00</td>
-              <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <td scope="row">5</td>
-              <td><img src="http://via.placeholder.com/80X80" alt=""></td>
-
-              <td><a href="">Giá xăng sẽ tiếp tục tăng ở mức cao, lần thứ 4 liên tiếp vào ngày mai?</a></td>
-              <td>Tin nóng</td>
-              <td>26:06:2020 14:00</td>
-              <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <td scope="row">6</td>
-
-              <td><img src="http://via.placeholder.com/80X80" alt=""></td>
-
-              <td><a href="#">Xuất hiện ứng dụng ngân hàng Việt Nam leo lên vị trí Top 1 trên App Store</a></td>
-              <td>Tin nóng</td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="?mod=news&controller=index&action=edit">
-                    <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit">
-                    <i class="fa fa-edit"></i>
-                  </button>
-                  </a>
-                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-              </td>
-            </tr>
+            <?php
+            $i = 0;
+            foreach ($list_news_by_admin as $news) {
+              $i++;
+            ?>
+              <tr>
+                <td scope="row"><?php echo $i ?></td>
+                <td><img style="width: 80px; height: 80px; object-fit:cover; border: 3px solid #ccc;" src="http://localhost/LHSports/admin/public/images/<?php echo $news['img_news'] ?>" alt=""></td>
+                <td><p class="title-news"><?php echo $news['title_news'] ?></p></td>
+                <td><?php echo $news['status_news'] ?></td>
+                <td><?php echo $news['created_at'] ?></td>
+                <td>
+                  <a href="?mod=news&controller=index&action=detail&id=<?php echo $news['id_news']; ?>" class="btn btn-warning btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Show"><i class="fa-solid fa-eye"></i></a>
+                  <a href="?mod=news&controller=index&action=edit&id=<?php echo $news['id_news']; ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                  <a href="?mod=news&controller=index&action=delete&id=<?php echo $news['id_news']; ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            <?php
+            }
+            ?>
 
 
           </tbody>
         </table>
-        <nav aria-label="Page navigation example">
+        <!-- <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Previous">
@@ -158,7 +80,7 @@ get_sidebar();
               </a>
             </li>
           </ul>
-        </nav>
+        </nav> -->
       </div>
     </div>
   </div>

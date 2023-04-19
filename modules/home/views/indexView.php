@@ -326,6 +326,12 @@ get_header();
   </div>
 </div>
 
+<a href="#">
+  <button id="myBtn" title="Go to top">
+    <i class="fa-solid fa-arrow-up fa-bounce"></i>
+  </button>
+</a>
+
 <?php
 get_footer();
 ?>

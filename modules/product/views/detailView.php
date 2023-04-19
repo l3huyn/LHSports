@@ -34,7 +34,7 @@ if (!empty($product_by_id)) {
 
             <div class="num-order-wp">
               <a href="?mod=cart&controller=index&action=add&id=<?php echo $product_by_id['id']; ?>" title="" class="add-to-cart">
-                <p class="buy-now">MUA NGAY</p>
+                MUA NGAY
               </a>
             </div>
 

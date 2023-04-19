@@ -1,5 +1,35 @@
 <?php
 get_header();
+
+//Lay so don thanh cong
+$order_success = get_orders_success();
+foreach($order_success as $item) {
+  $count_order_success = $item['COUNT'];
+}
+
+//Lay so don dang xu ly
+$order_processing = get_orders_processing();
+foreach($order_processing as $item) {
+  $count_order_processing = $item['COUNT'];
+}
+
+//Lay tong doanh so
+$total_revenue = get_total_revenue();
+foreach($total_revenue as $item) {
+  $revenue = $item['REVENUE'];
+}
+
+//Lay so don bi huy
+$order_cancelled = get_order_cancelled();
+foreach($order_cancelled as $item) {
+  $count_order_cancelled = $item['COUNT'];
+}
+
+
+if(isset($_GET['id'])) {
+  $id_order = $_GET['id'];
+}
+
 ?>
 <?php
 get_sidebar();
@@ -11,7 +41,7 @@ get_sidebar();
         <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
           <div class="card-header">ĐƠN HÀNG THÀNH CÔNG</div>
           <div class="card-body">
-            <h5 class="card-title">2.680</h5>
+            <h5 class="card-title"><?php  echo $count_order_success; ?></h5>
             <p class="card-text">Đơn hàng giao dịch thành công</p>
           </div>
         </div>
@@ -20,7 +50,7 @@ get_sidebar();
         <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
           <div class="card-header">ĐANG XỬ LÝ</div>
           <div class="card-body">
-            <h5 class="card-title">10</h5>
+            <h5 class="card-title"><?php  echo $count_order_processing; ?></h5>
             <p class="card-text">Số lượng đơn hàng đang xử lý</p>
           </div>
         </div>
@@ -30,7 +60,7 @@ get_sidebar();
         <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
           <div class="card-header">DOANH SỐ</div>
           <div class="card-body">
-            <h5 class="card-title">2.5 tỷ</h5>
+            <h5 class="card-title"><?php  echo currency_format($revenue); ?></h5>
             <p class="card-text">Doanh số hệ thống</p>
           </div>
         </div>
@@ -39,7 +69,7 @@ get_sidebar();
         <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
           <div class="card-header">ĐƠN HÀNG HỦY</div>
           <div class="card-body">
-            <h5 class="card-title">125</h5>
+            <h5 class="card-title"><?php  echo $count_order_cancelled; ?></h5>
             <p class="card-text">Số đơn bị hủy trong hệ thống</p>
           </div>
         </div>
@@ -48,130 +78,56 @@ get_sidebar();
     <!-- end analytic  -->
     <div class="card">
       <div class="card-header font-weight-bold">
-        ĐƠN HÀNG MỚI
+        ĐƠN HÀNG
       </div>
       <div class="card-body">
-        <table class="table table-striped">
+        <table class="table table-striped text-center">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Mã</th>
+              <th scope="col">STT</th>
+              <th scope="col">Mã đơn</th>
               <th scope="col">Khách hàng</th>
-              <th scope="col">Sản phẩm</th>
+              <th scope="col">Số điện thoại</th>
               <th scope="col">Số lượng</th>
-              <th scope="col">Giá trị</th>
+              <th scope="col">Giá</th>
               <th scope="col">Trạng thái</th>
               <th scope="col">Thời gian</th>
+              <th scope="col">Ghi chú</th>
               <th scope="col">Tác vụ</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>1212</td>
-              <td>
-                Phan Văn Cương <br>
-                0988859692
-              </td>
-              <td><a href="#">Samsung Galaxy A51 (8GB/128GB)</a></td>
-              <td>1</td>
-              <td>7.790.000₫</td>
-              <td><span class="badge badge-warning">Đang xử lý</span></td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>1213</td>
-              <td>
-                Minh Anh <br>
-                0868873382
-              </td>
-              <td><a href="#">Samsung Galaxy A51 (8GB/128GB)</a></td>
-              <td>1</td>
-              <td>7.790.000₫</td>
-              <td><span class="badge badge-warning">Đang xử lý</span></td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>1214</td>
-              <td>
-                Trần Thu Hằng <br>
-                0234343545
-              </td>
-              <td><a href="#">Điện thoại iPhone 11 Pro Max 64GB</a></td>
-              <td>1</td>
-              <td>29.490.000₫</td>
-              <td><span class="badge badge-success">Hoàn thành</span></td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>1212</td>
-              <td>
-                Tuấn Anh <br>
-                091236768
-              </td>
-              <td><a href="#">Apple MacBook Pro Touch 2020 i5 512GB</a></td>
-              <td>1</td>
-              <td>47.990.000₫</td>
-              <td><span class="badge badge-warning">Đang xử lý</span></td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>1214</td>
-              <td>
-                Trần Thu Hằng <br>
-                0234343545
-              </td>
-              <td><a href="#">Điện thoại iPhone 11 Pro Max 64GB</a></td>
-              <td>1</td>
-              <td>29.490.000₫</td>
-              <td><span class="badge badge-success">Hoàn thành</span></td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>1212</td>
-              <td>
-                Tuấn Anh <br>
-                091236768
-              </td>
-              <td><a href="#">Apple MacBook Pro Touch 2020 i5 512GB</a></td>
-              <td>1</td>
-              <td>47.990.000₫</td>
-              <td><span class="badge badge-success">Hoàn thành</span></td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
+            <?php
+            $i = 0;
+            foreach ($list_orders as $order) {
+              $i++;
+            ?>
+              <tr>
+                <th scope="row"><?php echo $i; ?></th>
+                <td><?php echo $order['id_order']; ?></td>
+                <td>
+                  <?php echo $order['name_customer']; ?> <br>
+                </td>
+                <td><a href="#"><?php echo $order['phone_customer']; ?></a></td>
+                <td><?php echo $order['total_qty']; ?></td>
+                <td><?php echo currency_format($order['total_price']); ?></td>
+                <td><span class="badge badge-warning"><?php echo $order['status_order']; ?></span></td>
+                <td><?php echo $order['created_at']; ?></td>
+                <td><?php echo $order['note_customer']; ?></td>
+                <td>
+                  <a href="?mod=dashboard&controller=index&action=detail_order&id=<?php echo $order['id_order']; ?>" class="btn btn-warning btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Show"><i class="fa-solid fa-eye"></i></a>
 
+                  <a href="?mod=dashboard&controller=index&action=edit&id=<?php echo $order['id_order']; ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                  
+                  <a href="?mod=dashboard&controller=index&action=delete&id=<?php echo $order['id_order']; ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            <?php
+            }
+            ?>
           </tbody>
         </table>
-        <nav aria-label="Page navigation example">
+        <!-- <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Previous">
@@ -189,7 +145,7 @@ get_sidebar();
               </a>
             </li>
           </ul>
-        </nav>
+        </nav> -->
       </div>
     </div>
 

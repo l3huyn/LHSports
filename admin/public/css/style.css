@@ -145,3 +145,29 @@ ul#sidebar-menu * {
     right: -5px;
     color: #8c8c8c;
 }
+
+.title-news {
+    line-height: 18px;
+    height: 36px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    margin: 0;
+}
+
+.error {
+    font-size: 14px;
+    color: red;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.card-header {
+    font-size: 22px;
+}

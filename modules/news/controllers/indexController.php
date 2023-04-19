@@ -4,7 +4,9 @@ function construct() {
 }
 
 function indexAction() {
-  load_view('index');
+  $list_news = get_list_news();
+  $data['list_news'] = $list_news;
+  load_view('index', $data);
 }
 
 

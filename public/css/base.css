@@ -24,6 +24,7 @@ html {
   line-height: 1.6rem;
   font-family: Playfair Display,serif;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 /*Responsive*/
@@ -343,4 +344,10 @@ html {
 
 .account--exits__here:hover {
   color: var(--text-color);
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+  font-style: italic;
 }
