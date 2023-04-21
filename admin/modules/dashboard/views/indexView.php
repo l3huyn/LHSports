@@ -89,7 +89,7 @@ get_sidebar();
               <th scope="col">Khách hàng</th>
               <th scope="col">Số điện thoại</th>
               <th scope="col">Số lượng</th>
-              <th scope="col">Giá</th>
+              <th scope="col">Tổng tiền</th>
               <th scope="col">Trạng thái</th>
               <th scope="col">Thời gian</th>
               <th scope="col">Ghi chú</th>

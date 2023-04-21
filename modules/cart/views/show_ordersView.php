@@ -57,7 +57,7 @@ $id = get_id_detail_order();
 
 								<li class="row mx-0 p-3 bill-item-pro">
 									<div class="col-2">
-										<img width="60px" class="border-main" src="public/imgProduct/<?php echo $order['img_product']; ?>" alt="">
+										<img width="60px" class="border-main" src="http://localhost/LHSports/admin/public/images/<?php echo $order['img_product']; ?>" alt="">
 									</div>
 									<div class="col-8" style="font-size: 16px;">
 										<a href="?mod=product&controller=index&action=detail&id=<?php echo $order['id_product']; ?>" title="" class="name-product "> <?php echo $order['name_product']; ?></a>

@@ -13,10 +13,10 @@ function add_cart()
     'id' => $items['id'],
     'imgProduct' => $items['imgProduct'],
     'nameProduct' => $items['nameProduct'],
-    'brand' => $items['brand'],
-    'price' => $items['price'],
+    'brand' => $items['brandProduct'],
+    'price' => $items['priceProduct'],
     'qty' => $qty,
-    'sub_total' => $items['price'] * $qty
+    'sub_total' => $items['priceProduct'] * $qty
   );
   #cập nhật hóa đơn
   update_info_cart();

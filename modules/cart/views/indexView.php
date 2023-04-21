@@ -44,7 +44,7 @@ get_header();
 
                                                 <td>
                                                     <a href="?mod=product&act=detail&id=<?php echo $item['id'] ?>" class="thumb">
-                                                        <img style="width: 100%; height: 100%;" src="public/imgProduct/<?php echo $item['imgProduct'] ?>" alt="">
+                                                        <img style="width: 100%; height: 100%;" src="http://localhost/LHSports/admin/public/images/<?php echo $item['imgProduct'] ?>" alt="">
                                                     </a>
                                                 </td>
 

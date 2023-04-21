@@ -11,14 +11,15 @@ get_sidebar();
         CHI TIẾT ĐƠN HÀNG
       </div>
       <div class="card-body">
-        <table class="table table-striped">
+        <table class="table table-striped text-center">
           <thead>
             <tr>
               <th scope="col">Mã đơn</th>
               <th scope="col">Khách hàng</th>
               <th scope="col">Tên sản phẩm</th>
               <th scope="col">Số lượng</th>
-              <th scope="col">Giá</th>
+              <th scope="col">Giá mỗi sản phẩm</th>
+              <th scope="col">Thành tiền</th>
             </tr>
           </thead>
           <tbody>
@@ -34,6 +35,7 @@ get_sidebar();
                 <td><?php echo $detail_order['name_product']; ?></td>
                 <td><?php echo $detail_order['qty_product']; ?></td>
                 <td><?php echo currency_format($detail_order['price_product']); ?></td>
+                <td><?php echo currency_format($detail_order['price_product']*$detail_order['qty_product']); ?></td>
               </tr>
             <?php
             }

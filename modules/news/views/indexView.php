@@ -16,7 +16,7 @@ get_header();
             </div>
 
             <div class="news__body">
-              <a href="" class="news__body-link">
+              <a href="?mod=news&controller=index&action=detail&id=<?php echo $news['id_news'] ?>" class="news__body-link">
                 <h4 class="news__body-title"><?php echo $news['title_news']; ?></h4>
 
                 <div class="news__body-separate">

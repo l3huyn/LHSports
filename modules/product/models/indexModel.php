@@ -22,21 +22,21 @@ function get_list_product_by_cat($type) {
 }
 
 function get_list_product_order_by_increase() {
-  $result = db_fetch_array("SELECT * FROM `product` ORDER BY price");
+  $result = db_fetch_array("SELECT * FROM `product` ORDER BY priceProduct");
   return $result;
 }
 
 function get_list_product_order_by_decrease() {
-  $result = db_fetch_array("SELECT * FROM `product` ORDER BY price DESC");
+  $result = db_fetch_array("SELECT * FROM `product` ORDER BY priceProduct DESC");
   return $result;
 }
 
 function  get_list_product_by_cat_increase($type) {
-  $result = db_fetch_array("SELECT * FROM `product` WHERE `typeProduct` = '{$type}' ORDER BY price");
+  $result = db_fetch_array("SELECT * FROM `product` WHERE `typeProduct` = '{$type}' ORDER BY priceProduct");
   return $result;
 }
 
 function  get_list_product_by_cat_decrease($type) {
-  $result = db_fetch_array("SELECT * FROM `product` WHERE `typeProduct` = '{$type}' ORDER BY price DESC");
+  $result = db_fetch_array("SELECT * FROM `product` WHERE `typeProduct` = '{$type}' ORDER BY priceProduct DESC");
   return $result;
 }

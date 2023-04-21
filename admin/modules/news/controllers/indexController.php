@@ -162,3 +162,22 @@ function detailAction()
         load_view('detail', $data);
     }
 }
+
+function status_newsAction() {
+    if(isset($_GET['status'])) {
+        $status = $_GET['status'];
+
+        $public = 'public';
+        $pending_approval = 'pending_approval';
+
+        if($status == $public) {
+            $list_news = get_public_news();
+            $data['list_news'] = $list_news;
+            load_view('status_news', $data);
+        } else if($status == $pending_approval) {
+            $list_news = get_pending_approval_news();
+            $data['list_news'] = $list_news;
+            load_view('status_news', $data);
+        }
+    }
+}

@@ -449,7 +449,7 @@ body a:hover {
 
 .header__nav-item--search-btn-icon {
   color: var(--primary-color);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 /* History search */
@@ -528,7 +528,7 @@ body a:hover {
 
 .header__nav--product {
   position: absolute;
-  width: 75vw;
+  width: 1200px;
   height: auto;
   border-radius: 8px;
   top: 34px;
@@ -1589,7 +1589,6 @@ body a:hover {
   justify-content: space-between;
   padding-top: 20px;
   padding-bottom: 60px;
-  border-bottom: 2px solid #ccc;
 }
 
 #info-product-wp .detail .price {
@@ -1652,9 +1651,11 @@ body a:hover {
 }
 
 #desc-wp .section-title {
-  margin: 0;
   padding: 20px 0;
-  font-size: 2.4rem;
+  font-size: 2rem;
+  color: #f9466d;
+  text-transform: uppercase;
+  border-bottom: 2px solid #f9466d;
 }
 
 #desc-wp .section-detail p {
@@ -1662,6 +1663,10 @@ body a:hover {
   padding-bottom: 10px;
   color: #444;
   font-size: 1.6rem;
+}
+
+.section-detail {
+  margin-top: 20px;
 }
 
 .detail_product-img {
@@ -2026,16 +2031,22 @@ textarea {
   text-align: center;
 }
 
+.search-product-name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 20px 0;
+}
+
 .search-product-name {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 500;
   color: var(--primary-color);
   text-align: center;
-  margin: 10px 0 0 0;
 }
 
 .search-product-name-title {
-  text-align: center;
+  margin-left: 10px;
   font-size: 3rem;
   font-weight: 500;
 }
@@ -2067,4 +2078,43 @@ textarea {
   padding: 15px; /* Some padding */
   border-radius: 10px; /* Rounded corners */
   font-size: 20px; /* Increase font size */
+}
+
+.img-news-container {
+  margin: 10px 0 15px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.img-news {
+  max-width: 600px;
+}
+
+.short-desc-news-container {
+  font-size: 16px;
+  margin: 0;
+}
+
+.title-news-container {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.auth-and-time {
+  display: flex;
+  align-items: center;
+}
+
+.created-at {
+  font-size: 18px;
+  color: #acacac;
+  margin-bottom: 10px;
+}
+
+.auth-news {
+  margin-left: 24px;
+  font-size: 18px;
+  color: #acacac;
+  margin-bottom: 10px;
 }

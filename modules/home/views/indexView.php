@@ -1,5 +1,6 @@
 <?php
 get_header();
+$list_news = get_list_news();
 ?>
 
 <div class="app__container">
@@ -220,11 +221,11 @@ get_header();
             <div class="grid__column-2-4 sale-off__item-product">
               <div class="home-product-item">
                 <a class="home-product-item-link" href="?mod=product&controller=index&action=detail&id=<?php echo $item['id']; ?>">
-                  <img class="home-product-item-img" src="public/imgProduct/<?php echo $item['imgProduct']; ?>" alt="">
+                  <img class="home-product-item-img" src="http://localhost/LHSports/admin/public/images/<?php echo $item['imgProduct']; ?>" alt="">
                   <h4 class="home-product-item__name"><?php echo $item['nameProduct']; ?></h4>
                   <div class="home-product-item_desc">
-                    <span class='brand-item'><?php echo $item['brand']; ?></span>
-                    <span class="home-product-item__price-current"><?php echo currency_format($item['price']); ?></span>
+                    <span class='brand-item'><?php echo $item['brandProduct']; ?></span>
+                    <span class="home-product-item__price-current"><?php echo currency_format($item['priceProduct']); ?></span>
                   </div>
                   <div class="home-product-item__favourite">
                     <i class="home-product-item__favourite-icon fa-solid fa-check"></i>
@@ -245,82 +246,34 @@ get_header();
     <div class="news__home-page">
       <h2 class="news__home-page-heading">Tin tức</h2>
       <div class="grid__row news__home-page-container">
-        <div class="grid__column-3">
-          <div class="news__contaner">
-            <div class="news__heading">
-              <img class="news__heading-img" src="https://shopvnb.com/img/600x360/uploads/tin_tuc/cac-mau-vot-yonex-astrox-cao-cap-cach-chon-vot-cau-long-yonex-astrox-10.jpg" alt="News Badminton">
-            </div>
+        <?php
+        foreach ($list_news as $news) {
+        ?>
+          <div class="grid__column-3">
+            <div class="news__contaner">
+              <div class="news__heading">
+                <img class="news__heading-img" src="http://localhost/LHSports/admin/public/images/<?php echo $news['img_news'] ?>" alt="News Badminton">
+              </div>
 
-            <div class="news__body">
-              <a href="" class="news__body-link">
-                <h4 class="news__body-title">Các mẫu Vợt Yonex Astrox cao cấp - Cách chọn vợt cầu lông Yonex Astrox</h4>
+              <div class="news__body">
+                <a href="?mod=news&controller=index&action=detail&id=<?php echo $news['id_news'] ?>" class="news__body-link">
+                  <h4 class="news__body-title"><?php echo $news['title_news']; ?></h4>
 
-                <div class="news__body-separate">
-                  <span class="news__body-separate--date-time">22-9-2022 22:36:17</span>
-                </div>
+                  <div class="news__body-separate">
+                    <span class="news__body-separate--date-time"><?php echo $news['created_at']; ?></span>
+                  </div>
 
-                <p class="news__body-desc">Astrox là một trong các dòng vợt được ưa chuộng của Yonex. Là dòng vợt thiên công tốc độ nhanh, phù hợp trong cả đánh đôi và đánh đơn. Vợt cầu lông Yonex Astrox được sử dụng nhiều nhất bởi các vận động viên chuyên nghiệp, trong số đó có cả những vận động viên đang ở vị trí số 1 thế giới. Sau đây hãy cùng tìm hiểu một số cây vợt Yonex Astrox cao cấp nhất, cũng như cách chọn vợt cầu lông Yonex Astrox phù hợp với lối đánh.</p>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="grid__column-3">
-          <div class="news__contaner">
-            <div class="news__heading">
-              <img class="news__heading-img" src="https://shopvnb.com/img/600x360/uploads/tin_tuc/nhung-mau-vot-cau-long-khoang-1-trieu-tot-nhat-tren-thi-truong-15.jpg" alt="News Badminton">
-            </div>
-
-            <div class="news__body">
-              <a href="" class="news__body-link">
-                <h4 class="news__body-title">Những mẫu vợt cầu lông khoảng 1 triệu tốt nhất trên thị trường</h4>
-
-                <div class="news__body-separate">
-                  <span class="news__body-separate--date-time">19-09-2022 23:26:33</span>
-                </div>
-
-                <p class="news__body-desc">Với mức giá 1 triệu người chơi có thể có rất nhiều lựa chọn vợt ở phân khúc tầm trung từ các thương hiệu như Yonex, Lining, Apacs, Proace,... Đây là phân khúc phù hợp với những bạn mới bắt đầu chơi, hoặc các bạn học sinh - sinh viên có điều kiện kinh tế ở mức vừa phải. Sau đây hãy cùng điểm qua một số mẫu vợt cầu lông khoảng 1 triệu đáng cân nhắc.</p>
-              </a>
+                  <p class="news__body-desc"><?php echo $news['short_desc_news']; ?></p>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="grid__column-3">
-          <div class="news__contaner">
-            <div class="news__heading">
-              <img class="news__heading-img" src="https://shopvnb.com/img/600x360/uploads/tin_tuc/vot-cau-long-tam-gia-3-trieu-dang-mua-nhat-10.jpg" alt="News Badminton">
-            </div>
+        <?php
+        }
+        ?>
 
-            <div class="news__body">
-              <a href="" class="news__body-link">
-                <h4 class="news__body-title">Vợt cầu lông tầm giá 3 triệu đáng mua nhất</h4>
 
-                <div class="news__body-separate">
-                  <span class="news__body-separate--date-time"> 16-09-2022 19:19:02</span>
-                </div>
 
-                <p class="news__body-desc">Với mức giá 3 triệu có thể chưa mua được những mẫu vợt đắt nhất nhưng đủ để sử hữu một cây vợt cầu lông cao cấp, với những công nghệ tốt nhất từ các thương hiệu lớn. Dưới đây là những mẫu vợt cầu lông tầm giá 3 triệu đáng mua nhất trên thị trường.</p>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="grid__column-3">
-          <div class="news__contaner">
-            <div class="news__heading">
-              <img class="news__heading-img" src="https://shopvnb.com/img/600x360/uploads/tin_tuc/mot-so-mau-giay-cau-long-mizuno-nu-dang-duoc-ua-chuong-8.jpg" alt="News Badminton">
-            </div>
-
-            <div class="news__body">
-              <a href="" class="news__body-link">
-                <h4 class="news__body-title">Một số mẫu giày cầu lông Mizuno nữ đang được ưa chuộng</h4>
-
-                <div class="news__body-separate">
-                  <span class="news__body-separate--date-time">13-09-2022 23:36:08</span>
-                </div>
-
-                <p class="news__body-desc">Giày cầu lông Mizuno cũng chiếm một thị phần nhất định trên thị trường. Nhờ vào thương hiệu đến từ Nhật Bản đã nhận được những đánh giá tích cực từ phía đông đảo người dùng. Sau đây là một số mẫu giày cầu lông Mizuno nữ mà các bạn có thể cân nhắc lựa chọn.</p>
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

@@ -23,7 +23,7 @@ get_sidebar();
   <div id="content" class="container-fluid">
     <div class="card">
       <div class="card-header font-weight-bold d-flex justify-content-between align-items-center">
-        <h5 class="m-0 ">Danh sách bài viết</h5>
+        <h5 class="m-0 ">Bài viết theo trạng thái</h5>
       </div>
       <div class="card-body">
         <div class="analytic mb-4">
@@ -44,7 +44,7 @@ get_sidebar();
           <tbody>
             <?php
             $i = 0;
-            foreach ($list_news_by_admin as $news) {
+            foreach ($list_news as $news) {
               $i++;
             ?>
               <tr>

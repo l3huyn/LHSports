@@ -10,16 +10,16 @@ if (!empty($product_by_id)) {
       <div class="section" id="info-product-wp">
         <div class="section-detail-product">
           <div class="grid__column-4 detail_product-img-container">
-            <img id="zoom" class="detail_product-img" src="public/imgProduct/<?php echo $product_by_id['imgProduct']; ?>" data-zoom-image="public/imgProduct/<?php echo $product_by_id['imgProduct']; ?>" alt="">
+            <img id="zoom" class="detail_product-img" src="http://localhost/LHSports/admin/public/images/<?php echo $product_by_id['imgProduct']; ?>" data-zoom-image="http://localhost/LHSports/admin/public/images/<?php echo $product_by_id['imgProduct']; ?>" alt="">
           </div>
 
           <div class="grid__column-6 detail">
             <h3 class="title-product"><?php echo $product_by_id['nameProduct']; ?></h3>
             <div class='detail__desc'>
-              <p class="product-code brand" style="font-weight: 700;">Thương hiệu: <span style="color: red;"><?php echo  $product_by_id['brand']; ?></span></p>
-              <p class="product-code status" style="font-weight: 700;">Tình trạng: <span style="color: red;"><?php echo  $product_by_id['status']; ?></span></p>
+              <p class="product-code brand" style="font-weight: 700;">Thương hiệu: <span style="color: red;"><?php echo  $product_by_id['brandProduct']; ?></span></p>
+              <p class="product-code status" style="font-weight: 700;">Tình trạng: <span style="color: red;"><?php echo  $product_by_id['statusProduct']; ?></span></p>
             </div>
-            <p class="price"><?php echo currency_format($product_by_id['price']); ?></p>
+            <p class="price"><?php echo currency_format($product_by_id['priceProduct']); ?></p>
 
             <fieldset class="pro-discount endow">
               <legend>
@@ -43,23 +43,12 @@ if (!empty($product_by_id)) {
       </div>
       <div class="section" id="desc-wp">
         <div class="section-head">
-          <h3 class="section-title">Chi tiết sản phẩm</h3>
+          <h3 class="section-title">Mô tả sản phẩm</h3>
         </div>
         <div class="section-detail">
           <div class="inforProduct">
-            <span class="detail-product__heading">1. Thông tin vợt cầu lông</span>
-            <p class='infor-product'>
-              <?php echo $product_by_id['infoProduct']; ?>
-            </p>
+            <?php echo $product_by_id['inforProduct'] ?>
           </div>
-
-          <div class="parameters">
-            <span class="detail-product__heading">2. Thông số kỹ thuật vợt cầu lông</span>
-            <p>
-              <?php echo  $product_by_id['parameters']; ?>
-            </p>
-          </div>
-
         </div>
       </div>
     </div>

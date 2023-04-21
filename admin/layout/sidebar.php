@@ -20,8 +20,6 @@
       <i class="arrow fas fa-angle-right"></i>
       <ul class="sub-menu">
         <li><a href="?mod=news&controller=index&action=add">Thêm mới</a></li>
-        <li><a href="?view=list-post">Danh sách</a></li>
-        <li><a href="?view=cat">Danh mục</a></li>
       </ul>
     </li>
 
@@ -35,8 +33,6 @@
       <i class="arrow fas fa-angle-down"></i>
       <ul class="sub-menu">
         <li><a href="?mod=product&controller=index&action=add">Thêm mới</a></li>
-        <li><a href="?view=list-product">Danh sách</a></li>
-        <li><a href="?view=cat-product">Danh mục</a></li>
       </ul>
     </li>
 
@@ -63,6 +59,16 @@
         <li><a href="?mod=users&controller=index&action=add">Thêm mới</a></li>
         <li><a href="?mod=users&controller=index&action=index">Danh sách</a></li>
       </ul>
+    </li>
+
+    <li class="nav-link">
+      <a href="?mod=order&controller=index&action=index">
+        <div class="nav-link-icon d-inline-flex">
+          <i class="far fa-folder"></i>
+        </div>
+        Liên hệ
+      </a>
+      <i class="arrow fas fa-angle-right"></i>
     </li>
 
   </ul>

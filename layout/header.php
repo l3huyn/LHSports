@@ -116,7 +116,7 @@
                     foreach ($list_buy as $item) {
                     ?>
                       <a href="?mod=product&controller=index&action=detail&id=<?php echo $item['id'] ?>" class="header__box-item-cart-link">
-                        <img src="public/imgProduct/<?php echo $item['imgProduct']; ?>" alt="" class="header__box-item-cart-img-product">
+                        <img src="http://localhost/LHSports/admin/public/images/<?php echo $item['imgProduct']; ?>" alt="" class="header__box-item-cart-img-product">
                         <div class="header__box-item-cart--container">
                           <p class="header__box-item-cart--name-product"><?php echo $item['nameProduct'] ?></p>
                           <div class="header__box-item-cart--qty-and-price">

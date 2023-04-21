@@ -10,7 +10,7 @@ get_sidebar();
   <div id="content" class="container-fluid">
     <div class="card">
       <div class="card-header font-weight-bold d-flex justify-content-between align-items-center">
-        <h5 class="m-0 ">Danh sách sản phẩm</h5>
+        <h5 class="m-0 ">Danh sách sản phẩm theo danh mục</h5>
         <div class="form-search form-inline">
           <form method="POST" action="?mod=product&controller=index&action=search">
             <input type="text" name="search" class="form-control form-search" placeholder="Tìm kiếm">
@@ -22,7 +22,7 @@ get_sidebar();
         <form action="?mod=product&controller=index&action=cat_product" method="POST" class="form-action form-inline py-3">
           <span style="margin-right: 10px; font-weight: bold;">Danh mục</span>
           <select name="filter" class="filter-product mr-1">
-            <option value="">---Chọn---</option>
+            <option>---Chọn---</option>
             <option class="filter-product-option" value="racket">Vợt cầu lông</option>
             <option class="filter-product-option" value="shoes">Giày cầu lông</option>
             <option class="filter-product-option" value="bag">Túi vợt cầu lông</option>
@@ -49,7 +49,7 @@ get_sidebar();
           <tbody>
             <?php
             $i = 0;
-            foreach ($list_product as $product) {
+            foreach ($list_product_by_filter as $product) {
               $i++;
             ?>
               <tr>

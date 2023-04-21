@@ -25,7 +25,6 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="?view=add-post">Thêm bài viết</a>
                         <a class="dropdown-item" href="?view=add-product">Thêm sản phẩm</a>
-                        <a class="dropdown-item" href="?view=list-order">Thêm đơn hàng</a>
                     </div>
                 </div>
                 <div class="btn-group">
