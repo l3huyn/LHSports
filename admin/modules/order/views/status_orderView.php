@@ -19,19 +19,10 @@ get_sidebar();
         </div>
       </div>
       <div class="card-body">
-        <div class="analytic">
+        <div class="analytic mb-3">
           <a href="?mod=order&controller=index&action=status_order&status=processing" class="text-primary">Đang xử lý<span class="text-muted">(10)</span></a>
           <a href="?mod=order&controller=index&action=status_order&status=delivered" class="text-primary">Đã giao<span class="text-muted">(5)</span></a>
         </div>
-        <form action="?mod=order&controller=index&action=filter" method=POST class="form-action form-inline py-3">
-          <span style="margin-right: 10px; font-weight: bold;">Sắp xếp theo</span>
-          <select name="filter-order" class="form-control mr-1">
-            <option>---Chọn---</option>
-            <option value="newest">Ngày đặt mới nhất</option>
-            <option value="oldest">Ngày đặt cũ nhất</option>
-          </select>
-          <input type="submit" name="btn-filter-order" value="Áp dụng" class="btn btn-primary">
-        </form>
         <table class="table table-striped table-checkall text-center">
           <thead>
             <tr>
@@ -76,8 +67,6 @@ get_sidebar();
             <?php
             }
             ?>
-
-
           </tbody>
         </table>
 

@@ -10,6 +10,7 @@ $count_unavailable_product = get_number_unavailable_product();
 foreach($count_unavailable_product as $product) {
   $unavailable_product = $product['COUNT'];
 }
+
 ?>
 
 <?php
@@ -63,7 +64,7 @@ get_sidebar();
           <tbody>
             <?php
             $i = 0;
-            foreach ($list_product as $product) {
+            foreach ($list_product_by_status as $product) {
               $i++;
             ?>
               <tr>

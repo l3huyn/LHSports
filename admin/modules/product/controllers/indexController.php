@@ -197,30 +197,50 @@ function cat_productAction()
             $list_product_by_filter = get_list_product_by_filter($filter);
             $data['list_product_by_filter'] = $list_product_by_filter;
             load_view('cat_product', $data);
+        } else {
+            redirect("?mod=product&controller=index&action=index");
         }
     }
     // load_view('cat_product');
 }
 
-function searchAction() {
-    if(isset($_POST['search'])) {
-        if(!empty($_POST['search'])) {
-             $key_search = $_POST['search'];
-             $list_product = get_product_by_key_search($key_search);
-             $data['list_product'] = $list_product;
-             load_view('search', $data);
+function searchAction()
+{
+    if (isset($_POST['btn-search-product'])) {
+        if (!empty($_POST['search'])) {
+            $key_search = $_POST['search'];
+            $list_product = get_product_by_key_search($key_search);
+            $data['list_product'] = $list_product;
+            load_view('search', $data);
         } else {
             redirect("?mod=product&controller=index&action=index");
         }
     }
 }
 
-function detailAction() {
-    if(isset($_GET['id'])) {
+function detailAction()
+{
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $detail_product = get_product_by_id($id);
         $data['detail_product'] = $detail_product;
-         load_view('detail', $data);
+        load_view('detail', $data);
     }
-   
+}
+
+function status_productAction()
+{
+    if (isset($_GET['status'])) {
+        $status = $_GET['status'];
+
+        if ($status == 'available') {
+            $list_product_by_status = get_list_available_product();
+            $data['list_product_by_status'] = $list_product_by_status;
+            load_view('status_product', $data);
+        } else if ($status == 'unavailable') {
+            $list_product_by_status = get_list_unavailable_product();
+            $data['list_product_by_status'] = $list_product_by_status;
+            load_view('status_product', $data);
+        }
+    }
 }

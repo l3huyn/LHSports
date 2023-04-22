@@ -10,7 +10,7 @@ get_sidebar();
   <div id="content" class="container-fluid">
     <div class="card">
       <div class="card-header font-weight-bold d-flex justify-content-between align-items-center">
-        <h5 class="m-0 ">Danh sách đơn hàng</h5>
+        <h5 class="m-0 ">Đơn hàng bạn tìm</h5>
         <div class="form-search form-inline">
           <form action="?mod=order&controller=index&action=search" method="POST">
             <input type="text" name="key-search" class="form-control form-search" placeholder="Tìm kiếm theo tên khách hàng">

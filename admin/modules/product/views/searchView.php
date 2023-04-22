@@ -14,7 +14,7 @@ get_sidebar();
         <div class="form-search form-inline">
           <form method="POST" action="?mod=product&controller=index&action=search">
             <input type="text" name="search" class="form-control form-search" placeholder="Tìm kiếm">
-            <input type="submit" name="btn-search" value="Tìm kiếm" class="btn btn-primary" style="margin-top: 4px;">
+            <input type="submit" name="btn-search-product" value="Tìm kiếm" class="btn btn-primary" style="margin-top: 4px;">
           </form>
         </div>
       </div>
