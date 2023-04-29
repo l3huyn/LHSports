@@ -10,87 +10,56 @@ get_sidebar();
       <div class="card-header font-weight-bold d-flex justify-content-between align-items-center">
         <h5 class="m-0 ">Danh sách thành viên</h5>
         <div class="form-search form-inline">
-          <form action="#">
-            <input type="" class="form-control form-search" placeholder="Tìm kiếm">
-            <input type="submit" name="btn-search" value="Tìm kiếm" class="btn btn-primary">
+          <form method="POST" action="?mod=users&controller=index&action=search">
+            <input type="text" name="key-search" class="form-control form-search" placeholder="Tìm kiếm">
+            <input type="submit" name="btn-search-user" value="Tìm kiếm" class="btn btn-primary">
           </form>
         </div>
       </div>
       <div class="card-body">
-        <div class="analytic">
-          <a href="" class="text-primary">Trạng thái 1<span class="text-muted">(10)</span></a>
-          <a href="" class="text-primary">Trạng thái 2<span class="text-muted">(5)</span></a>
-          <a href="" class="text-primary">Trạng thái 3<span class="text-muted">(20)</span></a>
-        </div>
-        <div class="form-action form-inline py-3">
-          <select class="form-control mr-1" id="">
-            <option>Chọn</option>
-            <option>Tác vụ 1</option>
-            <option>Tác vụ 2</option>
+        <form action="?mod=users&controller=index&action=filter" method="POST" class="form-action form-inline py-3">
+          <span style="margin-right: 10px; font-weight: bold;">Lọc theo</span>
+          <select name="filter-user" class="filter-product mr-1">
+            <option value="">---Chọn---</option>
+            <option class="filter-product-option" value="Admintrator">Quản trị viên</option>
+            <option class="filter-product-option" value="Customer">Khách hàng</option>
           </select>
-          <input type="submit" name="btn-search" value="Áp dụng" class="btn btn-primary">
-        </div>
-        <table class="table table-striped table-checkall">
+          <input type="submit" name="btn-filter-user" value="Áp dụng" class="btn btn-primary">
+        </form>
+        <table class="table table-striped table-checkall text-center">
           <thead>
             <tr>
-              <th>
-                <input type="checkbox" name="checkall">
-              </th>
-              <th scope="col">#</th>
+              <th scope="col">STT</th>
+              <th scope="col">Ảnh đại diện</th>
               <th scope="col">Họ tên</th>
               <th scope="col">Username</th>
               <th scope="col">Email</th>
               <th scope="col">Quyền</th>
-              <th scope="col">Ngày tạo</th>
               <th scope="col">Tác vụ</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <th scope="row">1</th>
-              <td>Phan Văn Cương</td>
-              <td>phancuong</td>
-              <td>phancuong.qt@gmail.com</td>
-              <td>Admintrator</td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <th scope="row">2</th>
-              <td>Phan Trần Minh Anh</td>
-              <td>minhanh</td>
-              <td>minhanh@gmail.com</td>
-              <td>Editor</td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox">
-              </td>
-              <th scope="row">3</th>
-              <td>Nguyễn Hồng Nhung</td>
-              <td>hongnhung</td>
-              <td>hongnhung@gmail.com</td>
-              <td>Editor</td>
-              <td>26:06:2020 14:00</td>
-              <td>
-                <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
+            <?php
+            $i = 0;
+            foreach ($list_user as $user) {
+              $i++
+            ?>
+              <tr>
+                <th scope="row"><?php echo $i; ?></th>
+                <td><img style="width: 80px; height: 80px; object-fit:cover; border: 3px solid #ccc;" src="http://localhost/LHSports/public/imgUser/<?php echo $user['imgUser'] ?>" alt=""></td>
+                <td><?php echo $user['name'] ?></td>
+                <td><?php echo $user['username'] ?></td>
+                <td><?php echo $user['emailUser'] ?></td>
+                <td><?php echo $user['authority'] ?></td>
+                <td>
+                  <a href="?mod=users&controller=index&action=edit&id=<?php echo $user['id'] ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                  <a href="?mod=users&controller=index&action=delete&id=<?php echo $user['id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            <?php
+            }
+            ?>
+
           </tbody>
         </table>
         <nav aria-label="Page navigation example">
