@@ -14,23 +14,23 @@
 
                 <ul class="category-list">
                   <li class="category-item category-item--active">
-                    <a href="" class="category-item__link">Vợt cầu lông</a>
+                    <a href="?mod=product&controller=index&action=cat_product&type=racket" class="category-item__link">Vợt cầu lông</a>
                   </li>
 
                   <li class="category-item">
-                    <a href="" class="category-item__link">Giày cầu lông</a>
+                    <a href="?mod=product&controller=index&action=cat_product&type=shoes" class="category-item__link">Giày cầu lông</a>
                   </li>
 
                   <li class="category-item">
-                    <a href="" class="category-item__link">Balo cầu lông</a>
+                    <a href="?mod=product&controller=index&action=cat_product&type=balo" class="category-item__link">Balo cầu lông</a>
                   </li>
 
                   <li class="category-item">
-                    <a href="" class="category-item__link">Túi vợt cầu lông</a>
+                    <a href="?mod=product&controller=index&action=cat_product&type=bag" class="category-item__link">Túi vợt cầu lông</a>
                   </li>
 
                   <li class="category-item">
-                    <a href="" class="category-item__link">Phụ kiện cầu lông</a>
+                    <a href="?mod=product&controller=index&action=cat_product&type=accessory" class="category-item__link">Phụ kiện cầu lông</a>
                   </li>
 
                   <li class="category-item">
@@ -128,29 +128,6 @@
                 echo get_pagging($num_page, $page, "?mod=product&controller=index&action=index");
               }
               ?>
-              <!-- <ul class="pagination home-product__pagination">
-
-                <li class="pagination-item pagination-item__active">
-                  <a href="?mod=product&controller=index&action=index&page=1" class="pagination-item__link">1</a>
-                </li>
-
-                <li class="pagination-item">
-                  <a href="?mod=product&controller=index&action=index&page=2" class="pagination-item__link">2</a>
-                </li>
-
-                <li class="pagination-item">
-                  <a href="?mod=product&controller=index&action=index&page=3" class="pagination-item__link">3</a>
-                </li>
-
-                <li class="pagination-item">
-                  <a href="" class="pagination-item__link">4</a>
-                </li>
-
-                <li class="pagination-item">
-                  <a href="" class="pagination-item__link">5</a>
-                </li>
-
-              </ul> -->
 
             </div>
           </div>

@@ -14,6 +14,49 @@ function indexAction()
 
 function addAction()
 {
+    global $error;
+    if (isset($_POST['btn-add-admin'])) {
+        $error = array();
+
+        if (!empty($_POST['name'])) {
+            $name = $_POST['name'];
+        } else {
+            $error['name'] = "(*) Không được để trống họ và tên";
+        }
+
+        if (!empty($_POST['username'])) {
+            $username = $_POST['username'];
+        } else {
+            $error['username'] = "(*) Không được để trống tên đăng nhập";
+        }
+
+        if (!empty($_POST['email'])) {
+            $email = $_POST['email'];
+        } else {
+            $error['email'] = "(*) Không được để trống email";
+        }
+
+        if (!empty($_POST['password'])) {
+            $password = md5($_POST['password']);
+        } else {
+            $error['password'] = "(*) Không được để trống mật khẩu";
+        }
+
+        $authority = 'Admintrator';
+
+        if (empty($error)) {
+            $data = array(
+                'authority' => $authority,
+                'name' => $name,
+                'username' => $username,
+                'password' => $password,
+                'emailUser' => $email
+            );
+
+            add_user($data);
+            redirect("?mod=users&controller=index&action=index");
+        }
+    }
     load_view('add');
 }
 
@@ -84,17 +127,13 @@ function deleteAction()
     }
 }
 
-function filterAction()
+function filter_usersAction()
 {
-    if (isset($_POST['btn-filter-user'])) {
-        if (!empty($_POST['filter-user'])) {
-            $filter_user = $_POST['filter-user'];
-            $list_user = get_list_user_by_filter($filter_user);
-            $data['list_user'] = $list_user;
-            load_view('filter', $data);
-        } else {
-            redirect("?mod=users&controller=index&action=index");
-        }
+    if (isset($_GET['filter'])) {
+        $filter_user = $_GET['filter'];
+        $list_user = get_list_user_by_filter($filter_user);
+        $data['list_user'] = $list_user;
+        load_view('filter_users', $data);
     }
 }
 
@@ -110,4 +149,67 @@ function searchAction()
             redirect("?mod=users&controller=index&action=index");
         }
     }
+}
+
+function loginAction()
+{
+    global $error, $username, $password;
+    if (isset($_POST['btn-login-admin'])) {
+        $error = array();
+        #Check username
+        if (empty($_POST['username'])) {
+            $error['username'] = "(*) Không được để trống tên đăng nhập";
+        } else {
+            if (!is_username($_POST['username'])) {
+                $error['username'] = "(*) Tên đăng nhập không hợp lệ";
+            } else {
+                $username = $_POST['username'];
+            }
+        }
+
+        #Check password
+        if (empty($_POST['password'])) {
+            $error['password'] = "(*) Không được để trống mật khẩu";
+        } else {
+            if (!is_password($_POST['password'])) {
+                $error['password'] = "(*) Mật khẩu không hợp lệ";
+            } else {
+                $password = md5($_POST['password']);
+            }
+        }
+
+        #Kết luận
+        if (empty($error)) {
+            if (check_login_admin($username, $password)) {
+                #Lưu trữ phiên đăng nhập
+                $_SESSION['is_login'] = true;
+
+                #Lưu trữ các thông tin user bằng SESSION
+                $info_admin = get_info_admin($username, $password);
+                $_SESSION['admin']['id'] = $info_admin['id'];
+                $_SESSION['admin']['name'] = $info_admin['name'];
+
+                #Chuyển hướng
+                redirect("?mod=dashboard&controller=index&action=index");
+            } else {
+                $error['account'] = "Tên đăng nhập hoặc mật khẩu không tồn tại";
+            }
+        }
+    }
+    load_view('login');
+}
+
+function logoutAction()
+{
+    #Xử lý logout 
+    unset($_SESSION['is_login']);
+    unset($_SESSION['admin']);
+
+    #Chuyển hướng người dùng qua login 
+    redirect("?mod=users&controller=index&action=login");
+}
+
+function profile_adminAction()
+{
+    load_view('profile_admin');
 }

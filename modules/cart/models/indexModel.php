@@ -28,15 +28,15 @@ function add_detail_order($data) {
   return db_insert('detail_order', $data);
 }
 
-//Ham lay ID detail order
-function get_id_detail_order(){
-  $result =  db_query("SELECT id_order as ID FROM `orders`");
+//Ham lay ID detail order theo ID nguoi dung khi da dang nhap
+function get_id_detail_order($id_customer){
+  $result =  db_query("SELECT id_order FROM `orders` WHERE `id_customer` = '$id_customer'");
   return $result;
 }
 
 //Ham lay don hang dua vao ID 
 function get_list_order($id_order, $id_customer) {
-  $result = db_fetch_array("SELECT * FROM `detail_order` WHERE `id_order` = $id_order AND `id_customer` = $id_customer");
+  $result = db_fetch_array("SELECT * FROM `detail_order` WHERE `id_customer` = $id_customer AND `id_order` = $id_order");
   return $result;
 }
 
@@ -51,13 +51,20 @@ function check_order($id_customer) {
 }
 
 //Ham kiem tra thong tin don hang 
-function get_info_order($id_order) {
-  $result = db_fetch_array("SELECT * FROM `orders` WHERE `id_order` = $id_order");
+function get_info_order($id_order, $id_customer) {
+  $result = db_fetch_array("SELECT * FROM `orders` WHERE `id_order` = $id_order AND `id_customer` = $id_customer");
   return $result;
 }
 
 
-
+function check_info_user_by_id($id) {
+  $result = db_num_rows("SELECT * FROM `users` WHERE `id` = '{$id}'");
+  if($result > 0) {
+    return TRUE;
+  } else {
+    return FALSE;
+  }
+}
 
 
 ?>

@@ -52,3 +52,11 @@ function get_order_by_key_search($key_search) {
   $result = db_fetch_array("SELECT * FROM `orders` WHERE `name_customer` like '%" . $key_search . "%'");
   return $result;
 }
+
+function get_orders_processing() {
+  return db_fetch_array("SELECT COUNT(*) as COUNT FROM orders WHERE `status_order` = 'Đang xử lý'");
+}
+
+function get_orders_delivered() {
+  return db_fetch_array("SELECT COUNT(*) as COUNT FROM orders WHERE `status_order` = 'Đã giao'");
+}

@@ -3,13 +3,16 @@ get_header();
 ?>
 
 <?php
+//Lấy ID người dùng khi đã đăng nhập thành công
 $id_customer = $_SESSION['user']['id'];
-$id = get_id_detail_order();
-// show_array($info_order);
+
+//Lấy ID chi tiết sản phẩm bằng ID của của người dùng khi đăng nhập thành công
+$id = get_id_detail_order($id_customer);
 ?>
 
 <div class="grid wide">
 	<?php
+	//Kiểm tra đơn hàng bằng ID người dùng, nếu có thì hiển thị còn không thì hiển thị empty
 	if (check_order($id_customer)) {
 	?>
 		<div class="row ">
@@ -22,11 +25,7 @@ $id = get_id_detail_order();
 						<li><a style="font-size: 16px;" class="" href="">Tất cả</a> </li>
 
 						<li class="bill-name-type d-flex align-items-center">
-							<a style="font-size: 16px;" class="" href="">Đang xác nhận</a>
-						</li>
-
-						<li class="bill-name-type d-flex align-items-center">
-							<a style="font-size: 16px;" class="" href="">Đang vận chuyển</a>
+							<a style="font-size: 16px;" class="" href="">Đang xử lý</a>
 						</li>
 
 						<li class="bill-name-type d-flex align-items-center ">
@@ -41,8 +40,10 @@ $id = get_id_detail_order();
 					<span style="font-size: 20px;" class="font-weight-bold">ĐƠN HÀNG</span>
 				</div>
 				<?php
+				//Duyệt mảng id vừa lấy phía trên
 				foreach ($id as $id_orders) {
-					$id_order = $id_orders['ID'];
+					$id_order = $id_orders['id_order'];
+					//Lấy danh sách chi tiết sản phẩm bằng id_order và id_customer khi đã đăng nhập
 					$orders = get_list_order($id_order, $id_customer);
 				?>
 
@@ -52,6 +53,7 @@ $id = get_id_detail_order();
 						<ul style="padding-left: 0;" class="fs-4 bill-list-pro">
 
 							<?php
+							//Duyệt mảng orders vừa lấy phía trên
 							foreach ($orders as $order) {
 							?>
 
@@ -76,7 +78,8 @@ $id = get_id_detail_order();
 
 						<div style="border-bottom: 3px solid rgb(47, 47, 162);" class="fs-3 p-3 pe-5 bill-total">
 							<?php
-							$info_order = get_info_order($id_order);
+							//Lấy thông tin đơn hàng để hiển thị tổng số tiền và tình trạng đơn hàng
+							$info_order = get_info_order($id_order, $id_customer);
 							foreach ($info_order as $info) {
 							?>
 								<div class='order-bottom'>

@@ -1,5 +1,16 @@
 <?php
 get_header();
+
+
+$order_processing = get_orders_processing();
+foreach ($order_processing as $item) {
+  $count_order_processing = $item['COUNT'];
+}
+
+$order_delivered = get_orders_delivered();
+foreach ($order_delivered as $item) {
+  $count_order_delivered = $item['COUNT'];
+}
 ?>
 
 <?php
@@ -20,18 +31,31 @@ get_sidebar();
       </div>
       <div class="card-body">
         <div class="analytic">
-          <a href="?mod=order&controller=index&action=status_order&status=processing" class="text-primary">Đang xử lý<span class="text-muted">(10)</span></a>
-          <a href="?mod=order&controller=index&action=status_order&status=delivered" class="text-primary">Đã giao<span class="text-muted">(5)</span></a>
+          <a href="?mod=order&controller=index&action=status_order&status=processing" class="text-primary">Đang xử lý<span class="text-muted">(<?php echo $count_order_processing; ?>)</span></a>
+          <a href="?mod=order&controller=index&action=status_order&status=delivered" class="text-primary">Đã giao<span class="text-muted">(<?php echo $count_order_delivered; ?>)</span></a>
         </div>
-        <form action="?mod=order&controller=index&action=filter" method=POST class="form-action form-inline py-3">
-          <span style="margin-right: 10px; font-weight: bold;">Sắp xếp theo</span>
-          <select name="filter-order" class="form-control mr-1">
-            <option>---Chọn---</option>
-            <option value="newest">Ngày đặt mới nhất</option>
-            <option value="oldest">Ngày đặt cũ nhất</option>
-          </select>
-          <input type="submit" name="btn-filter-order" value="Áp dụng" class="btn btn-primary">
-        </form>
+        <div class="admin-filter mt-3">
+          <span class="admin-filter__label">Sắp xếp theo</span>
+          <div class="select-input">
+            <span class="select-input__label">---Chọn---</span>
+            <i class="select-input__icon fa-solid fa-angle-down"></i>
+
+            <!-- List option -->
+            <ul class="select-input__list">
+              <li class="select-input__item">
+                <a href="?mod=order&controller=index&action=filter_order&filter=oldest" class="select-input__item-link">
+                  Cũ nhất
+                </a>
+              </li>
+              <li class="select-input__item">
+                <a href="?mod=order&controller=index&action=filter_order&filter=newest" class="select-input__item-link">
+                  Mới nhất
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
         <table class="table table-striped table-checkall text-center">
           <thead>
             <tr>
@@ -49,37 +73,58 @@ get_sidebar();
           </thead>
           <tbody>
             <?php
-            $i = 0;
-            foreach ($list_order as $order) {
-              $i++;
+            if (!empty($list_order)) {
+              //----------PAGGING----------//
+              #Số bản ghi trên một trang
+              $num_per_page = 5;
+              #Tổng số bản ghi
+              $total_row = count($list_order);
+              #Số trang
+              $num_page = ceil($total_row / $num_per_page);
+              #Số trang hiện tại lấy từ URL xuống
+              $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+              #Chỉ số miền bắt đầu mỗi trang
+              $start = ($page - 1) * $num_per_page;
+              $list_order_by_page = array_slice($list_order, $start, $num_per_page);
+
+              $i = $start;
+              foreach ($list_order_by_page as $order) {
+                $i++;
             ?>
-              <tr>
-                <td><?php echo $i ?></td>
-                <td><?php echo $order['id_order'] ?></td>
-                <td>
-                  <?php echo $order['name_customer'] ?>
-                </td>
-                <td><?php echo $order['phone_customer'] ?></td>
-                <td><?php echo $order['total_qty'] ?></td>
-                <td><?php echo currency_format($order['total_price']) ?></td>
-                <td><span class="badge badge-warning"><?php echo $order['status_order'] ?></span></td>
-                <td><?php echo $order['created_at'] ?></td>
-                <td><?php echo $order['note_customer'] ?></td>
-                <td>
-                  <a href="?mod=order&controller=index&action=detail_order&id=<?php echo $order['id_order']; ?>" class="btn btn-warning btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Show"><i class="fa-solid fa-eye"></i></a>
+                <tr>
+                  <td><?php echo $i ?></td>
+                  <td><?php echo $order['id_order'] ?></td>
+                  <td>
+                    <?php echo $order['name_customer'] ?>
+                  </td>
+                  <td><?php echo $order['phone_customer'] ?></td>
+                  <td><?php echo $order['total_qty'] ?></td>
+                  <td><?php echo currency_format($order['total_price']) ?></td>
+                  <td><span class="badge badge-warning"><?php echo $order['status_order'] ?></span></td>
+                  <td><?php echo $order['created_at'] ?></td>
+                  <td><?php echo $order['note_customer'] ?></td>
+                  <td>
+                    <a href="?mod=order&controller=index&action=detail_order&id=<?php echo $order['id_order']; ?>" class="btn btn-warning btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Show"><i class="fa-solid fa-eye"></i></a>
 
-                  <a href="?mod=order&controller=index&action=edit&id=<?php echo $order['id_order']; ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                    <a href="?mod=order&controller=index&action=edit&id=<?php echo $order['id_order']; ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
 
-                  <a href="?mod=order&controller=index&action=delete&id=<?php echo $order['id_order']; ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-                </td>
-              </tr>
+                    <a href="?mod=order&controller=index&action=delete&id=<?php echo $order['id_order']; ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                  </td>
+                </tr>
             <?php
+              }
             }
             ?>
 
 
           </tbody>
         </table>
+
+        <?php
+        if (!empty($list_order)) {
+          echo get_pagging($num_page, $page, "?mod=order&controller=index&action=index");
+        }
+        ?>
 
       </div>
     </div>

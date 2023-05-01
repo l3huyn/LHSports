@@ -24,8 +24,8 @@ function delete_product_by_id($id_product) {
   return $result;
 }
 
-function get_list_product_by_filter($filter) {
-  $result = db_fetch_array("SELECT * FROM `product` WHERE `typeProduct` = '{$filter}'");
+function get_list_product_by_cat($cat) {
+  $result = db_fetch_array("SELECT * FROM `product` WHERE `typeProduct` = '{$cat}'");
   return $result;
 }
 

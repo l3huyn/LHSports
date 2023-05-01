@@ -17,15 +17,28 @@ get_sidebar();
         </div>
       </div>
       <div class="card-body">
-        <form action="?mod=users&controller=index&action=filter" method="POST" class="form-action form-inline py-3">
-          <span style="margin-right: 10px; font-weight: bold;">Lọc theo</span>
-          <select name="filter-user" class="filter-product mr-1">
-            <option value="">---Chọn---</option>
-            <option class="filter-product-option" value="Admintrator">Quản trị viên</option>
-            <option class="filter-product-option" value="Customer">Khách hàng</option>
-          </select>
-          <input type="submit" name="btn-filter-user" value="Áp dụng" class="btn btn-primary">
-        </form>
+        <div class="admin-filter mt-3">
+          <span class="admin-filter__label">Sắp xếp theo</span>
+          <div class="select-input">
+            <span class="select-input__label">---Chọn---</span>
+            <i class="select-input__icon fa-solid fa-angle-down"></i>
+
+            <!-- List option -->
+            <ul class="select-input__list">
+              <li class="select-input__item">
+                <a href="?mod=users&controller=index&action=filter_users&filter=Admintrator" class="select-input__item-link">
+                  Quản trị viên
+                </a>
+              </li>
+              <li class="select-input__item">
+                <a href="?mod=users&controller=index&action=filter_users&filter=Customer" class="select-input__item-link">
+                  Khách hàng
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
         <table class="table table-striped table-checkall text-center">
           <thead>
             <tr>
@@ -40,47 +53,48 @@ get_sidebar();
           </thead>
           <tbody>
             <?php
-            $i = 0;
-            foreach ($list_user as $user) {
-              $i++
+            if (!empty($list_user)) {
+              //----------PAGGING----------//
+              #Số bản ghi trên một trang
+              $num_per_page = 5;
+              #Tổng số bản ghi
+              $total_row = count($list_user);
+              #Số trang
+              $num_page = ceil($total_row / $num_per_page);
+              #Số trang hiện tại lấy từ URL xuống
+              $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+              #Chỉ số miền bắt đầu mỗi trang
+              $start = ($page - 1) * $num_per_page;
+              $list_user_by_page = array_slice($list_user, $start, $num_per_page);
+
+              $i = $start;
+              foreach ($list_user_by_page as $user) {
+                $i++
             ?>
-              <tr>
-                <th scope="row"><?php echo $i; ?></th>
-                <td><img style="width: 80px; height: 80px; object-fit:cover; border: 3px solid #ccc;" src="http://localhost/LHSports/public/imgUser/<?php echo $user['imgUser'] ?>" alt=""></td>
-                <td><?php echo $user['name'] ?></td>
-                <td><?php echo $user['username'] ?></td>
-                <td><?php echo $user['emailUser'] ?></td>
-                <td><?php echo $user['authority'] ?></td>
-                <td>
-                  <a href="?mod=users&controller=index&action=edit&id=<?php echo $user['id'] ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                  <a href="?mod=users&controller=index&action=delete&id=<?php echo $user['id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-                </td>
-              </tr>
+                <tr>
+                  <th scope="row"><?php echo $i; ?></th>
+                  <td><img style="width: 80px; height: 80px; object-fit:cover; border: 3px solid #ccc;" src="http://localhost/LHSports/public/img-user/<?php echo $user['imgUser'] ?>" alt=""></td>
+                  <td><?php echo $user['name'] ?></td>
+                  <td><?php echo $user['username'] ?></td>
+                  <td><?php echo $user['emailUser'] ?></td>
+                  <td><?php echo $user['authority'] ?></td>
+                  <td>
+                    <a href="?mod=users&controller=index&action=edit&id=<?php echo $user['id'] ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                    <a href="?mod=users&controller=index&action=delete&id=<?php echo $user['id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                  </td>
+                </tr>
             <?php
+              }
             }
             ?>
 
           </tbody>
         </table>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">Trước</span>
-                <span class="sr-only">Sau</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <?php
+        if (!empty($list_user_by_page)) {
+          echo get_pagging($num_page, $page, "?mod=product&controller=index&action=index");
+        }
+        ?>
       </div>
     </div>
   </div>

@@ -21,7 +21,7 @@ defined('APPPATH') OR exit('Không được quyền truy cập phần này');
  */
 
 
-$autoload['lib'] = array('validation');
+$autoload['lib'] = array('validation', 'pagination');
 
 /*
  * ------------------------------------------------------------------
@@ -32,7 +32,7 @@ $autoload['lib'] = array('validation');
  */
 
 
-$autoload['helper'] = array('data', 'format', 'url');
+$autoload['helper'] = array('data', 'format', 'url', 'users');
 
 
 

@@ -191,18 +191,15 @@ function deleteAction()
 
 function cat_productAction()
 {
-    if (isset($_POST['btn-filter'])) {
-        if (!empty($_POST['filter'])) {
-            $filter = $_POST['filter'];
-            $list_product_by_filter = get_list_product_by_filter($filter);
-            $data['list_product_by_filter'] = $list_product_by_filter;
-            load_view('cat_product', $data);
-        } else {
-            redirect("?mod=product&controller=index&action=index");
-        }
+    if (isset($_GET['cat'])) {
+        $cat = $_GET['cat'];
+        $list_product_by_cat = get_list_product_by_cat($cat);
+        $data['list_product_by_cat'] = $list_product_by_cat;
+        load_view('cat_product', $data);
     }
-    // load_view('cat_product');
 }
+
+
 
 function searchAction()
 {

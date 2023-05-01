@@ -204,3 +204,141 @@ ul#sidebar-menu * {
   color: var(--text-color);
   text-align: center;
 }
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #6a11cb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(150deg, #3f5efb, #fc466b);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(150deg, #3f5efb, #fc466b);
+}
+
+.btn-login-admin {
+  background-color: #fc466b;
+  outline: none;
+  padding: 20px;
+  border: none;
+  color: white;
+}
+
+/* Pagination */
+.pagination {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-item {
+  margin: 0 8px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+}
+
+
+.pagination-item__link {
+  display: block;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  min-width: 40px;
+  height: var(--height);
+  text-align: center;
+  line-height: var(--height);
+  border-radius: 2px;
+  padding: 2px 4px;
+}
+
+.pagination-item .pagination-item__link:hover {
+  color: white;
+  background-color: #000;
+}
+
+.active {
+  background-color: #000;
+  color: white !important;
+}
+
+
+
+.admin-filter {
+  background-color: rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  padding: 12px 22px;
+  border-radius: 2px;
+}
+
+.admin-filter__label {
+  color: #555555;
+  font-size: 1rem;
+  margin-right: 16px;
+}
+
+.select-input {
+  padding: 0 12px;
+  height: 34px;
+  border-radius: 8px;
+  background-color: white;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.select-input__label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.select-input__icon {
+  font-size: 1rem;
+  color: #4a4a4a;
+  position: relative;
+  top: 1px;
+  color: #8c8c8c;
+}
+
+.select-input:hover .select-input__list {
+  display: block;
+}
+
+.select-input__list {
+  position: absolute;
+  z-index: 1;
+  list-style: none;
+  top: 110%;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgb(209, 208, 208);
+  border-radius: 8px;
+  padding: 6px 16px;
+  display: none;
+}
+
+.select-input__list::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 200px;
+  right: 0;
+  top: -12px;
+  height: 30px;
+}
+
+.select-input__item-link {
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  padding: 6px 0;
+}
+
+.select-input__item-link:hover {
+
+}

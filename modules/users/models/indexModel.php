@@ -2,7 +2,7 @@
 //Hàm kiểm tra đăng nhập
 function check_login($username, $password)
 {
-    $check_user = db_num_rows("SELECT * FROM `users` WHERE `username` = '{$username}' AND `password` = '{$password}'");
+    $check_user = db_num_rows("SELECT * FROM `users` WHERE `username` = '{$username}' AND `password` = '{$password}' AND `authority` = 'Customer'");
     //Nếu số dòng lớn hơn 0 chứng tỏ tồn tại
     if ($check_user > 0) {
         return TRUE;

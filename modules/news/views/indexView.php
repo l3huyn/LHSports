@@ -7,75 +7,51 @@ get_header();
     <div class="grid__row">
 
       <?php
-      foreach ($list_news as $news) {
+      if (!empty($list_news)) {
+        //----------PAGGING----------//
+        #Số bản ghi trên một trang
+        $num_per_page = 8;
+        #Tổng số bản ghi
+        $total_row = count($list_news);
+        #Số trang
+        $num_page = ceil($total_row / $num_per_page);
+        #Số trang hiện tại lấy từ URL xuống
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        #Chỉ số miền bắt đầu mỗi trang
+        $start = ($page - 1) * $num_per_page;
+        $list_news_by_page = array_slice($list_news, $start, $num_per_page);
+        foreach ($list_news_by_page as $news) {
       ?>
-        <div class="grid__column-3">
-          <div class="news__contaner">
-            <div class="news__heading">
-              <img class="news__heading-img" src="http://localhost/LHSports/admin/public/images/<?php echo $news['img_news'] ?>" alt="News Badminton">
-            </div>
+          <div class="grid__column-3">
+            <div class="news__contaner">
+              <div class="news__heading">
+                <img class="news__heading-img" src="http://localhost/LHSports/admin/public/images/<?php echo $news['img_news'] ?>" alt="News Badminton">
+              </div>
 
-            <div class="news__body">
-              <a href="?mod=news&controller=index&action=detail&id=<?php echo $news['id_news'] ?>" class="news__body-link">
-                <h4 class="news__body-title"><?php echo $news['title_news']; ?></h4>
+              <div class="news__body">
+                <a href="?mod=news&controller=index&action=detail&id=<?php echo $news['id_news'] ?>" class="news__body-link">
+                  <h4 class="news__body-title"><?php echo $news['title_news']; ?></h4>
 
-                <div class="news__body-separate">
-                  <span class="news__body-separate--date-time"><?php echo $news['created_at']; ?></span>
-                </div>
+                  <div class="news__body-separate">
+                    <span class="news__body-separate--date-time"><?php echo $news['created_at']; ?></span>
+                  </div>
 
-                <p class="news__body-desc"><?php echo $news['short_desc_news']; ?></p>
-              </a>
+                  <p class="news__body-desc"><?php echo $news['short_desc_news']; ?></p>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
       <?php
+        }
       }
       ?>
 
     </div>
-    <ul class="pagination news__pagination">
-      <li class="pagination-item">
-        <a href="" class="pagination-item__link">
-          <i class="pagination-item__icon fas fa-angle-left"></i>
-        </a>
-      </li>
-
-      <li class="pagination-item pagination-item__active">
-        <a href="" class="pagination-item__link">1</a>
-      </li>
-
-      <li class="pagination-item">
-        <a href="" class="pagination-item__link">2</a>
-      </li>
-
-      <li class="pagination-item">
-        <a href="" class="pagination-item__link">3</a>
-      </li>
-
-      <li class="pagination-item">
-        <a href="" class="pagination-item__link">4</a>
-      </li>
-
-      <li class="pagination-item">
-        <a href="" class="pagination-item__link">5</a>
-      </li>
-
-      <li class="pagination-item">
-        <a href="" class="pagination-item__link">...</a>
-      </li>
-
-      <li class="pagination-item">
-        <a href="" class="pagination-item__link">14</a>
-      </li>
-
-
-
-      <li class="pagination-item">
-        <a href="" class="pagination-item__link">
-          <i class="pagination-item__icon fas fa-angle-right"></i>
-        </a>
-      </li>
-    </ul>
+    <?php
+    if (!empty($list_news)) {
+      echo get_pagging($num_page, $page, "?mod=news&controller=index&action=index");
+    }
+    ?>
   </div>
 </div>
 

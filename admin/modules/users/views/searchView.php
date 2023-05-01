@@ -46,7 +46,7 @@ get_sidebar();
             ?>
               <tr>
                 <th scope="row"><?php echo $i; ?></th>
-                <td><img style="width: 80px; height: 80px; object-fit:cover; border: 3px solid #ccc;" src="http://localhost/LHSports/public/imgUser/<?php echo $user['imgUser'] ?>" alt=""></td>
+                <td><img style="width: 80px; height: 80px; object-fit:cover; border: 3px solid #ccc;" src="http://localhost/LHSports/public/img-user/<?php echo $user['imgUser'] ?>" alt=""></td>
                 <td><?php echo $user['name'] ?></td>
                 <td><?php echo $user['username'] ?></td>
                 <td><?php echo $user['emailUser'] ?></td>

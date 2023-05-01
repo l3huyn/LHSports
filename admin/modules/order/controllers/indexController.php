@@ -55,38 +55,35 @@ function editAction()
     load_view('edit');
 }
 
-function filterAction()
+function filter_orderAction()
 {
-    if (isset($_POST['btn-filter-order'])) {
-        if (!empty($_POST['filter-order'])) {
-            $filter = $_POST['filter-order'];
+    if (isset($_GET['filter'])) {
+        $filter = $_GET['filter'];
 
-            if ($filter == 'newest') {
-                $list_order = get_newst_list_order();
-                $data['list_order'] = $list_order;
-                load_view('filter', $data);
-            } else if ($filter == 'oldest') {
-                $list_order = get_oldest_list_order();
-                $data['list_order'] = $list_order;
-                load_view('filter', $data);
-            }
-        } else {
-            redirect("?mod=order&controller=index&action=index");
+        if ($filter == 'newest') {
+            $list_order = get_newst_list_order();
+            $data['list_order'] = $list_order;
+            load_view('filter_order', $data);
+        } else if ($filter == 'oldest') {
+            $list_order = get_oldest_list_order();
+            $data['list_order'] = $list_order;
+            load_view('filter_order', $data);
         }
     }
 }
 
-function status_orderAction() {
-    if(isset($_GET['status'])) {
+function status_orderAction()
+{
+    if (isset($_GET['status'])) {
         $status = $_GET['status'];
 
-        if($status == 'processing') {
+        if ($status == 'processing') {
             $list_order = get_processing_list_order();
             $data['list_order'] = $list_order;
             load_view('status_order', $data);
         }
 
-        if($status == 'delivered') {
+        if ($status == 'delivered') {
             $list_order = get_delivered_list_order();
             $data['list_order'] = $list_order;
             load_view('status_order', $data);
@@ -94,7 +91,8 @@ function status_orderAction() {
     }
 }
 
-function searchAction() {
+function searchAction()
+{
     if (isset($_POST['btn-search-order'])) {
         if (!empty($_POST['key-search'])) {
             $key_search = $_POST['key-search'];

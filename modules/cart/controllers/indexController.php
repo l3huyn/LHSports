@@ -93,57 +93,116 @@ function orderAction()
     $total_price = get_total_cart();
 
     if (empty($error)) {
-      //Lưu thông tin về người đặt hàng vào mảng $data 
-      $data = array(
-        'id_customer' => $id_customer,
-        'name_customer' => $fullname,
-        'email_customer' => $email,
-        'phone_customer' => $cellphone,
-        'address_customer' => $address,
-        'note_customer' => $note,
-        'total_qty' => $total_qty,
-        'total_price' => $total_price,
-        'created_at' => $created_at
-      );
 
-      //Gọi hàm thêm sản phẩm vào đơn hàng
-      add_order($data);
+      if (check_info_user_by_id($id_customer)) {
 
-      //Lấy ID đơn hàng vừa tạo bằng hàm get_id_order 
-      $id_order = get_id_order($fullname, $created_at);
-      $id = $id_order['id_order'];
-
-      //Lấy thông tin sản phầm trong giỏ hàng bằng hàm get_list_buy_cart
-      $list_buy = get_list_buy_cart();
-      //Duyệt mảng để lấy các thông tin sản phẩm 
-      foreach ($list_buy as $item) {
-        $id_product = $item['id'];
-        $name_product = $item['nameProduct'];
-        $img_product = $item['imgProduct'];
-        $qty_product = $item['qty'];
-        $price_product = $item['price'];
-        $sub_total = $item['sub_total'];
-
-        //Lưu thông tin vào mảng $data
+        //Lưu thông tin về người đặt hàng vào mảng $data 
         $data = array(
-          'id_order' => $id,
           'id_customer' => $id_customer,
           'name_customer' => $fullname,
-          'id_product' => $id_product,
-          'name_product' => $name_product,
-          'img_product' => $img_product,
-          'qty_product' => $qty_product,
-          'price_product' => $price_product,
-          'sub_total' => $sub_total
+          'email_customer' => $email,
+          'phone_customer' => $cellphone,
+          'address_customer' => $address,
+          'note_customer' => $note,
+          'total_qty' => $total_qty,
+          'total_price' => $total_price,
+          'created_at' => $created_at
         );
 
-        //Gọi hàm thêm chi tiết đơn hàng
-        add_detail_order($data);
-      }
+        //Gọi hàm thêm sản phẩm vào đơn hàng
+        add_order($data);
 
-      //Hủy session và chuyển hướng
-      unset($_SESSION['cart']);
-      redirect('?mod=cart&controller=index&action=show_orders');
+        //Lấy ID đơn hàng vừa tạo bằng hàm get_id_order 
+        $id_order = get_id_order($fullname, $created_at);
+        $id = $id_order['id_order'];
+
+        //Lấy thông tin sản phầm trong giỏ hàng bằng hàm get_list_buy_cart
+        $list_buy = get_list_buy_cart();
+
+        //Duyệt mảng để lấy các thông tin sản phẩm 
+        foreach ($list_buy as $item) {
+          $id_product = $item['id'];
+          $name_product = $item['nameProduct'];
+          $img_product = $item['imgProduct'];
+          $qty_product = $item['qty'];
+          $price_product = $item['price'];
+          $sub_total = $item['sub_total'];
+
+          //Lưu thông tin vào mảng $data
+          $data = array(
+            'id_order' => $id,
+            'id_customer' => $id_customer,
+            'name_customer' => $fullname,
+            'id_product' => $id_product,
+            'name_product' => $name_product,
+            'img_product' => $img_product,
+            'qty_product' => $qty_product,
+            'price_product' => $price_product,
+            'sub_total' => $sub_total
+          );
+
+          //Gọi hàm thêm chi tiết đơn hàng
+          add_detail_order($data);
+        }
+
+        //Hủy session và chuyển hướng
+        unset($_SESSION['cart']);
+        redirect('?mod=cart&controller=index&action=show_orders');
+      } else {
+        //Lưu thông tin về người đặt hàng vào mảng $data 
+        $data = array(
+          'id_customer' => $id_customer,
+          'name_customer' => $fullname,
+          'email_customer' => $email,
+          'phone_customer' => $cellphone,
+          'address_customer' => $address,
+          'note_customer' => $note,
+          'total_qty' => $total_qty,
+          'total_price' => $total_price,
+          'created_at' => $created_at
+        );
+
+        //Gọi hàm thêm sản phẩm vào đơn hàng
+        add_order($data);
+
+        //Lấy ID đơn hàng vừa tạo bằng hàm get_id_order 
+        $id_order = get_id_order($fullname, $created_at);
+        $id = $id_order['id_order'];
+
+        //Lấy thông tin sản phầm trong giỏ hàng bằng hàm get_list_buy_cart
+        $list_buy = get_list_buy_cart();
+
+        //Duyệt mảng để lấy các thông tin sản phẩm 
+        foreach ($list_buy as $item) {
+          $id_product = $item['id'];
+          $name_product = $item['nameProduct'];
+          $img_product = $item['imgProduct'];
+          $qty_product = $item['qty'];
+          $price_product = $item['price'];
+          $sub_total = $item['sub_total'];
+
+          //Lưu thông tin vào mảng $data
+          $data = array(
+            'id_order' => $id,
+            'id_customer' => $id_customer,
+            'name_customer' => $fullname,
+            'id_product' => $id_product,
+            'name_product' => $name_product,
+            'img_product' => $img_product,
+            'qty_product' => $qty_product,
+            'price_product' => $price_product,
+            'sub_total' => $sub_total
+          );
+
+          //Gọi hàm thêm chi tiết đơn hàng
+          add_detail_order($data);
+        }
+
+        //Hủy session và chuyển hướng
+        unset($_SESSION['cart']);
+
+        redirect();
+      }
     }
   }
 }

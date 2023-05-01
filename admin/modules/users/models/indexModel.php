@@ -4,6 +4,10 @@ function get_list_user() {
   return $result;
 }
 
+function add_user($data) {
+  return db_insert('users', $data);
+}
+
 function delete_user($id_user) {
   return db_query("DELETE FROM users WHERE `id` = $id_user");
 }
@@ -27,5 +31,23 @@ function get_user_by_key_search($key_search) {
   return $result;
 }
 
-?>
+function check_login_admin($username, $password)
+{
+    $check_user = db_num_rows("SELECT * FROM `users` WHERE `username` = '{$username}' AND `password` = '{$password}' AND `authority` = 'Admintrator'");
+    //Nếu số dòng lớn hơn 0 chứng tỏ tồn tại
+    if ($check_user > 0) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
 
+function get_info_admin($username, $password) {
+  $result = db_fetch_row("SELECT * FROM `users` WHERE `username` = '{$username}' AND `password` = '{$password}' AND `authority` = 'Admintrator'");
+  return $result;
+}
+
+function get_admin_by_id($id) {
+  $result = db_fetch_row("SELECT * FROM `users` WHERE `id` = '{$id}' AND `authority` = 'Admintrator'");
+  return $result;
+}

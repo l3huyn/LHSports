@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+ob_start();
 /*
  * ---------------------------------------------------------
  * BASE URL
@@ -14,9 +15,9 @@
 $config['base_url'] = "http://localhost/LHSports/admin";
 
 
-$config['default_module'] = 'dashboard';
+$config['default_module'] = 'users';
 $config['default_controller'] = 'index';
-$config['default_action'] = 'index';
+$config['default_action'] = 'login';
 
 
 
