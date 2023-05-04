@@ -24,7 +24,7 @@
     'smtp_port' => 587,
     'smtp_user' => 'huynhle.work@gmail.com',
     'smtp_fullname' => 'Lê Huynh',
-    'smtp_pass' => 'whbpjlogtzkkcawx', //Mật khẩu ứng dụng
+    'smtp_pass' => 'baldadekaigtjgqn', //Mật khẩu ứng dụng
     'smtp_secure' => 'tls',
     'smtp_timeout' => '7',
     'mailtype' => 'html',

@@ -29,7 +29,7 @@ get_header('login_reg');
               <span class="login-signup__remember-me-msg">Ghi nhớ tôi</span>
             </div>
             <div class="login-signup__forget-pass">
-              <a href="" class="login-signup__forget-pass-link">
+              <a href="?mod=users&controller=index&action=reset" class="login-signup__forget-pass-link">
                 Quên mật khẩu?
               </a>
             </div>

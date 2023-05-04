@@ -133,6 +133,7 @@ function regAction() {
                             <p>Vui lòng click vào đường link này để kích hoạt tài khoản: {$link_active}</p>
                             <p>Nếu bạn không đăng ký tài khoản, vui lòng bỏ qua email này!</p>
                             <p>Team Support LHSports</p>";
+
                 #Gọi đến hàm send_mail để gửi active_token đến người dùng
                 // send_mail($emailUser, "Le Huynh", 'ACTIVE YOUR ACCOUNT', $content);
                 send_mail($emailUser, "Lê Huynh", "Kích hoạt tài khoản LHSPORTS", $content);
@@ -154,6 +155,82 @@ function activeAction() {
         echo "Bạn đã kích hoạt thành công, vui lòng click vào link sau để <a href='{$link_login}'>Đăng nhập</a>";
     } else {
         echo "Yêu cầu kích hoạt không hợp lệ hoặc tài khoản đã được kích hoạt trước đó!";
+    }
+}
+
+
+function resetAction() {
+    global $error, $username, $password;
+    if(!empty($_GET['reset_token'])){
+        $reset_token = $_GET['reset_token'];
+    }
+    if (!empty($reset_token)) {
+        if (check_reset_token($reset_token)) {
+            if (isset($_POST['btn-new-pass'])) {
+                $error = array();
+                #Check password
+                if (empty($_POST['password'])) {
+                    $error['password'] = "(*) Không được để trống mật khẩu";
+                } else {
+                    if (!is_password($_POST['password'])) {
+                        $error['password'] = "(*) Mật khẩu không hợp lệ";
+                    } else {
+                        $password = md5($_POST['password']);
+                    }
+                }
+
+                #Kết luận
+                if (empty($error)) {
+                    $data = array(
+                        'password' => $password
+                    );
+                    update_pass($data, $reset_token);
+                    redirect("?mod=users&action=resetSuccess");
+                }
+            }
+            load_view('newPass');
+        } else {
+            echo "(*) Yêu cầu khôi phục mật khẩu không hợp lệ";
+        }
+    } else {
+        if (isset($_POST['btn-reset'])) {
+            $error = array();
+            #Check email
+            if (empty($_POST['email'])) {
+                $error['email'] = "(*) Không được để trống email";
+            } else {
+                if (!is_email($_POST['email'])) {
+                    $error['email'] = "(*) Email không hợp lệ";
+                } else {
+                    $email = $_POST['email'];
+                }
+            }
+
+            #Kết luận
+            if (empty($error)) {
+                if (check_email($email)) {
+                    $reset_token = md5($email . time());
+                    #Lưu dữ liệu cần update lên DB vào mảng $data
+                    $data = array(
+                        'reset_token' => $reset_token
+                    );
+                    #Cập nhật mã reset password cho user cần khôi phục mật khẩu 
+                    update_reset_token($data, $email);
+
+                    #Gửi link khôi phục đến email của người dùng
+                    $link_reset = base_url("?mod=users&action=reset&reset_token={$reset_token}");
+                    $content = "<p>Chào bạn</p>
+                            <p>Vui lòng nhấn vào link sau để khôi phục mật khẩu: {$link_reset}</p>
+                            <p>Nếu không phải yêu cầu của bạn, vui lòng bỏ qua email này</p>
+                            <p>Team Support LHSports</p>";
+                    send_mail($email, "", "Khôi phục mật khẩu LHSports", $content);
+                    
+                } else {
+                    $error['account'] = "(*) Email không tồn tại trên hệ thống";
+                }
+            }
+        }
+        load_view('reset');
     }
 }
 
@@ -233,5 +310,9 @@ function logoutAction()
 
     #Chuyển hướng người dùng qua login 
     redirect();
+}
+
+function resetSuccessAction() {
+    load_view('resetSuccess');
 }
 

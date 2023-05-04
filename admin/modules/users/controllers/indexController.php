@@ -192,7 +192,7 @@ function loginAction()
                 #Chuyển hướng
                 redirect("?mod=dashboard&controller=index&action=index");
             } else {
-                $error['account'] = "Tên đăng nhập hoặc mật khẩu không tồn tại";
+                $error['account'] = "(*) Tên đăng nhập hoặc mật khẩu không tồn tại";
             }
         }
     }
